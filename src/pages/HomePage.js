@@ -8,7 +8,7 @@ export const HomePage = () => {
         if (true) {
             navigate("/login");
         }
-    }, []);
+    }, [navigate]);
 
     return;
 };
