@@ -1,17 +1,32 @@
-import React from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import { setUser } from "../store/slices/userSlice";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { Form } from "./Form";
 
 export const Login = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleLogin = (email, password) => {
         const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(console.log)
-            .catch(console.log);
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then(({ user }) => {
+                console.log(user);
+                dispatch(
+                    setUser({
+                        email: user.email,
+                        id: user.uid,
+                        token: user.accessToken,
+                    })
+                );
+                navigate("/");
+            })
+
+            .catch(() => alert("Invalid user!"));
     };
 
-    return <div></div>;
+    return <Form title="sign in" handleClick={handleLogin} />;
 };

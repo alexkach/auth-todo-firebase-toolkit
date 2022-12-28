@@ -1,24 +1,24 @@
 import { useState } from "react";
 
-export const Form = ({ handleClick, title }) => {
+export const Form = ({ title, handleClick }) => {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [pass, setPass] = useState("");
 
     return (
         <div>
             <input
-                value={email}
                 type="email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="email"
             />
             <input
-                value={password}
                 type="password"
-                onChange={(e) => setPassword(e.target.value)}
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
                 placeholder="password"
             />
-            <button onClick={handleClick}> {title} </button>
+            <button onClick={() => handleClick(email, pass)}>{title}</button>
         </div>
     );
 };
