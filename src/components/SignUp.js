@@ -26,5 +26,5 @@ export const SignUp = () => {
             .catch(console.error);
     };
 
-    return <Form title="register" handleClick={handleRegister} />;
+    return <Form title="Create account" handleClick={handleRegister} />;
 };

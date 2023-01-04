@@ -12,7 +12,7 @@ export const HomePage = () => {
             <h1>Welcome</h1>
 
             <button onClick={() => dispatch(removeUser())}>
-                Log out from {email}
+                å Log out from {email}
             </button>
         </div>
     ) : (
